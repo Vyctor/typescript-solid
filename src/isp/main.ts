@@ -8,12 +8,15 @@ import { ShoppingCart } from './classes/shopping-cart';
 import { Messaging } from './services/messaging';
 import { Persistency } from './services/persistency';
 import { TenPercentDiscount } from './classes/discount';
+import { CustomerOrder } from './classes/interfaces/customer-protocol';
+import { IndividualCustomer } from './classes/customer';
 
 const tenPercentDiscount = new TenPercentDiscount();
 const shoppingCart = new ShoppingCart(tenPercentDiscount);
 const messaging = new Messaging();
 const persistency = new Persistency(messaging);
-const order = new Order(shoppingCart, messaging, persistency);
+const customerOrder = new IndividualCustomer('Vyctor', 'Vieira', '700.966.211-84');
+const order = new Order(shoppingCart, messaging, persistency, customerOrder);
 
 shoppingCart.addItem(new Product('Camiseta', 50.0));
 shoppingCart.addItem(new Product('Caderno', 9.9));
